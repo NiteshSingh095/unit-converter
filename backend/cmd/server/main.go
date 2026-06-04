@@ -3,7 +3,7 @@ package main
 import (
 	"unit-converter-api/internal/middleware"
 	"unit-converter-api/internal/routes"
-
+	"os"
 	"github.com/gin-gonic/gin"
 )
 
@@ -16,5 +16,9 @@ func main() {
 
 	routes.RegisterRoutes(router)
 
-	router.Run(":8080")
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+	router.Run(":" + port)
 }
