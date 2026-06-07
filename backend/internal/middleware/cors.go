@@ -10,10 +10,7 @@ func CORSMiddleware() gin.HandlerFunc {
 	return cors.New(cors.Config{
 		AllowOrigins: []string{
 			"https://unit-converter-hwde.onrender.com",
-			"http://localhost:3000",
-			"http://localhost:5000",
-			"http://localhost:8080",
-			"http://localhost:54340",
+			"https://unit-converter-1-0ju7.onrender.com",
 		},
 		AllowMethods: []string{
 			"GET",
