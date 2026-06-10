@@ -1,0 +1,242 @@
+basePath: /api/v1
+definitions:
+  models.EchoRequest:
+    properties:
+      name:
+        example: John
+        type: string
+    type: object
+  models.EchoResponse:
+    properties:
+      message:
+        example: Hello, John
+        type: string
+    type: object
+  models.ErrorResponse:
+    properties:
+      error:
+        type: string
+    type: object
+  models.HealthResponse:
+    properties:
+      message:
+        example: Server is runing
+        type: string
+    type: object
+  models.LengthRequest:
+    properties:
+      from:
+        example: m
+        type: string
+      to:
+        example: ft
+        type: string
+      value:
+        example: 10
+        type: number
+    required:
+    - from
+    - to
+    - value
+    type: object
+  models.LengthResponse:
+    properties:
+      value:
+        example: 10.48
+        type: number
+    type: object
+  models.TemperatureRequest:
+    properties:
+      from:
+        example: celsius
+        type: string
+      to:
+        example: fahrenheit
+        type: string
+      value:
+        example: 10
+        type: number
+    required:
+    - from
+    - to
+    - value
+    type: object
+  models.TemperatureResponse:
+    properties:
+      result:
+        example: 50
+        type: number
+    type: object
+  models.WeightRequest:
+    properties:
+      from:
+        example: kg
+        type: string
+      to:
+        example: lbs
+        type: string
+      value:
+        example: 10
+        type: number
+    required:
+    - from
+    - to
+    - value
+    type: object
+  models.WeightResponse:
+    properties:
+      value:
+        example: 22.0462
+        type: number
+    type: object
+host: https://unit-converter-hwde.onrender.com
+info:
+  contact: {}
+  description: REST API for unit conversion.
+  title: Unit Converter API
+  version: "1.0"
+paths:
+  /convert/length:
+    post:
+      consumes:
+      - application/json
+      description: Convert one length unit to another
+      parameters:
+      - description: Length conversion request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.LengthRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.LengthResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Convert length
+      tags:
+      - Conversion
+  /convert/temperature:
+    post:
+      consumes:
+      - application/json
+      description: Convert temperature from one unit to another
+      parameters:
+      - description: Temperature conversion request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.TemperatureRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Temperature conversion response
+          schema:
+            $ref: '#/definitions/models.TemperatureResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Convert temperature from one unit to another
+      tags:
+      - Conversion
+  /convert/weight:
+    post:
+      consumes:
+      - application/json
+      description: Convert weight from one unit to another
+      parameters:
+      - description: Weight Conversion Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.WeightRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Weight Conversion Response
+          schema:
+            $ref: '#/definitions/models.WeightResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Convert weight from one unit to another
+      tags:
+      - Conversion
+  /echo:
+    post:
+      consumes:
+      - application/json
+      description: Echo the request body by adding "Hello, " to the msg received
+      parameters:
+      - description: Echo Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.EchoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Echo Response
+          schema:
+            $ref: '#/definitions/models.EchoResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Echo the request body
+      tags:
+      - Echo
+  /health:
+    get:
+      consumes:
+      - application/json
+      description: Check if the server is runing
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.HealthResponse'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Check if the server is runing
+      tags:
+      - Health
+swagger: "2.0"

@@ -1,0 +1,362 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "REST API for unit conversion.",
+        "title": "Unit Converter API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "https://unit-converter-hwde.onrender.com",
+    "basePath": "/api/v1",
+    "paths": {
+        "/convert/length": {
+            "post": {
+                "description": "Convert one length unit to another",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Conversion"
+                ],
+                "summary": "Convert length",
+                "parameters": [
+                    {
+                        "description": "Length conversion request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.LengthRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.LengthResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/convert/temperature": {
+            "post": {
+                "description": "Convert temperature from one unit to another",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Conversion"
+                ],
+                "summary": "Convert temperature from one unit to another",
+                "parameters": [
+                    {
+                        "description": "Temperature conversion request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TemperatureRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Temperature conversion response",
+                        "schema": {
+                            "$ref": "#/definitions/models.TemperatureResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/convert/weight": {
+            "post": {
+                "description": "Convert weight from one unit to another",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Conversion"
+                ],
+                "summary": "Convert weight from one unit to another",
+                "parameters": [
+                    {
+                        "description": "Weight Conversion Request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.WeightRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Weight Conversion Response",
+                        "schema": {
+                            "$ref": "#/definitions/models.WeightResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/echo": {
+            "post": {
+                "description": "Echo the request body by adding \"Hello, \" to the msg received",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Echo"
+                ],
+                "summary": "Echo the request body",
+                "parameters": [
+                    {
+                        "description": "Echo Request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.EchoRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Echo Response",
+                        "schema": {
+                            "$ref": "#/definitions/models.EchoResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/health": {
+            "get": {
+                "description": "Check if the server is runing",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Health"
+                ],
+                "summary": "Check if the server is runing",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.HealthResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.EchoRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "John"
+                }
+            }
+        },
+        "models.EchoResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "Hello, John"
+                }
+            }
+        },
+        "models.ErrorResponse": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.HealthResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "Server is runing"
+                }
+            }
+        },
+        "models.LengthRequest": {
+            "type": "object",
+            "required": [
+                "from",
+                "to",
+                "value"
+            ],
+            "properties": {
+                "from": {
+                    "type": "string",
+                    "example": "m"
+                },
+                "to": {
+                    "type": "string",
+                    "example": "ft"
+                },
+                "value": {
+                    "type": "number",
+                    "example": 10
+                }
+            }
+        },
+        "models.LengthResponse": {
+            "type": "object",
+            "properties": {
+                "value": {
+                    "type": "number",
+                    "example": 10.48
+                }
+            }
+        },
+        "models.TemperatureRequest": {
+            "type": "object",
+            "required": [
+                "from",
+                "to",
+                "value"
+            ],
+            "properties": {
+                "from": {
+                    "type": "string",
+                    "example": "celsius"
+                },
+                "to": {
+                    "type": "string",
+                    "example": "fahrenheit"
+                },
+                "value": {
+                    "type": "number",
+                    "example": 10
+                }
+            }
+        },
+        "models.TemperatureResponse": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "type": "number",
+                    "example": 50
+                }
+            }
+        },
+        "models.WeightRequest": {
+            "type": "object",
+            "required": [
+                "from",
+                "to",
+                "value"
+            ],
+            "properties": {
+                "from": {
+                    "type": "string",
+                    "example": "kg"
+                },
+                "to": {
+                    "type": "string",
+                    "example": "lbs"
+                },
+                "value": {
+                    "type": "number",
+                    "example": 10
+                }
+            }
+        },
+        "models.WeightResponse": {
+            "type": "object",
+            "properties": {
+                "value": {
+                    "type": "number",
+                    "example": 22.0462
+                }
+            }
+        }
+    }
+}
